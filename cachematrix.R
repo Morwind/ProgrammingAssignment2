@@ -9,16 +9,16 @@
 makeCacheMatrix <- function(x = matrix()) {
    s <- NULL
         
-        set <- function(y) {           ## Set e new matrix defined in anothe environment.
+        set <- function(y) {           ## Set a new matrix defined in anothe environment.
                 x <<- y
                 s <<- NULL
         }
-        get <- function() x            ## Shows the matrix currently used
+        get <- function() x            ## Shows the matrix currently used.
         
-        setInverse <- function(solve) s <<- solve ##Set the inverse matrix defined in
-                                                  ## defined in another environment.
+        setInverse <- function(solve) s <<- solve ## Set the inverse matrix defined in
+                                                  ## another environment.
        
-        getInverse <- function() s      ## Shows the inverse (if stored).
+        getInverse <- function() s      ## Shows the inverse of 'x' (if stored).
       
         list(set = set, get = get,
              setInverse = setInverse,
@@ -34,13 +34,13 @@ makeCacheMatrix <- function(x = matrix()) {
 ## matrix and display the answer.
 
 cacheSolve <- function(x, ...) {
-   s <- x$getInverse()              ## Checks for stored inverse of the matrix.
+   s <- x$getInverse()              ## Checks for stored inverse of 'x'.
         if(!is.null(s)) {
                 message("getting cached data")
                 return(s)
         }
         data <- x$get()             
-        s <- solve(data, ...)       ## Computing the inverse.
-        x$setInverse(s)             ## Sets the inverse in the "special" matrix.
+        s <- solve(data, ...)       ## Computing the inverse of 'x'.
+        x$setInverse(s)             ## Sets the inverse in the "special" matrix ('x').
         return(s)                   ## Return a matrix that is the inverse of 'x'
 }
